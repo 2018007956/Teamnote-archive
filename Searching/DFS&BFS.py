@@ -24,6 +24,7 @@ n, m, start = map(int, input().split())
 graph = [[] for _ in range(n + 1)]
 for _ in range(m):
     x, y = map(int, input().split())
+    # Undirected graph: edge=(x,y)=(y,x)
     graph[x].append(y)
     graph[y].append(x)
 
@@ -46,7 +47,7 @@ bfs(start)
 3 4
 -> graph: [[], [2, 3, 4], [1, 4], [1, 4], [1, 2, 3]]
     node           1         2       3        4
-    (cycle이 있는 graph)
+    (cycle이 있는 undirected graph)
     
 [Output Example 1]
 1 2 4 3 
