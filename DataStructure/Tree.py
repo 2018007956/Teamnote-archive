@@ -13,7 +13,6 @@ class Node(object):
             else: self.right = Node(data)
         # else: raise dataError("data %d is already exist!" % data)
 
-    
 def printTree(node, level=0):
     if node != None:
         printTree(node.left, level + 1)
