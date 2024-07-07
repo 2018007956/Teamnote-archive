@@ -5,7 +5,6 @@ start = int(input())
 INF = 1e8
 
 graph = [[] for _ in range(n+1)]
-visited = [False] * (n+1)
 distance = [INF] * (n+1)
 
 for _ in range(m):
@@ -21,13 +20,13 @@ def dijkstra(start):
     while q:
         dist, now = hq.heappop(q) # 우선순위가 가장 낮은 값(가장 작은 거리) 나옴
 
-        if distance[now] < dist: # 이미 입력된 값이 현재 노드까지의 거리보다 작으면 이미 방문한 노드
+        if distance[now] < dist: # 기존 거리보다 길다면 볼 필요도 없음
             continue
 
-        for adj in graph[now]:
-            if dist+adj[1] < distance[adj[0]]:
-                distance[adj[0]] = dist + adj[1]
-                hq.heappush(q, (dist+adj[1], adj[0]))
+        for adj_v, adj_w in graph[now]:
+            if dist+adj_w < distance[adj_v]: # 경유해서 가는 거리가 더 짧으면 갱신
+                distance[adj_v] = dist + adj_w
+                hq.heappush(q, (dist+adj_w, adj_v))
 
 
 dijkstra(start)
